@@ -4,3 +4,4 @@ rootProject.name = "AnimalityVetSupply"
 include(":app")
 include(":publicapp")
 include(":dairyapp")
+include(":dashboardapp")

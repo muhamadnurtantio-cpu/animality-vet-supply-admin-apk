@@ -25,12 +25,13 @@ jobs:
         with:
           gradle-version: '8.9'
       - name: Build installable APKs
-        run: gradle :app:assembleDebug :publicapp:assembleDebug :dairyapp:assembleDebug --stacktrace
+        run: gradle :app:assembleDebug :publicapp:assembleDebug :dairyapp:assembleDebug :dashboardapp:assembleDebug --stacktrace
       - name: Prepare APKs
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Animality-Vet-Supply-Admin.apk
           cp publicapp/build/outputs/apk/debug/publicapp-debug.apk Animality-Vet-Supply.apk
           cp dairyapp/build/outputs/apk/debug/dairyapp-debug.apk Dairy-Farm.apk
+          cp dashboardapp/build/outputs/apk/debug/dashboardapp-debug.apk Animality-Executive-Dashboard.apk
       - name: Upload Admin APK
         uses: actions/upload-artifact@v4
         with:
@@ -48,4 +49,10 @@ jobs:
         with:
           name: Dairy-Farm-APK
           path: Dairy-Farm.apk
+          if-no-files-found: error
+      - name: Upload Executive Dashboard APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Animality-Executive-Dashboard-APK
+          path: Animality-Executive-Dashboard.apk
           if-no-files-found: error
